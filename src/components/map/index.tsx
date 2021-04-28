@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 
 import { MapProps } from './interface';
 
@@ -9,7 +9,7 @@ export default function Map({ places }: MapProps) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {places?.map(({ id, slug, name, location }, index) => {
+      {places?.map(({ name, location }, index) => {
         const { latitude, longitude } = location;
         return <Marker position={[latitude, longitude]} title={name} key={index} />;
       })}
