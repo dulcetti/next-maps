@@ -9,9 +9,9 @@ export default function Map({ places }: MapProps) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {places?.map(({ name, location }, index) => {
+      {places?.map(({ id, name, location }) => {
         const { latitude, longitude } = location;
-        return <Marker position={[latitude, longitude]} title={name} key={index} />;
+        return <Marker position={[latitude, longitude]} title={name} key={`place-${id}`} />;
       })}
     </MapContainer>
   );
