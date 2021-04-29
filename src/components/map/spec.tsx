@@ -33,6 +33,6 @@ describe('<Map />', () => {
     };
     render(<Map places={[place, secondPlace]} />);
     expect(screen.getByTitle(/rio de janeiro/i)).toBeInTheDocument();
-    expect(screen.getByTitle(/ireland/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/irlanda/i)).toBeInTheDocument();
   });
 });
