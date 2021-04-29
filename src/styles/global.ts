@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   :root {
     --highlight: #fc3;
+    --highlightOn: #f60;
     --bg: #333;
     --text: #e5e7e7;
 
