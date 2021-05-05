@@ -1,5 +1,4 @@
 import { Beer } from '@styled-icons/ionicons-outline/Beer';
-// import { CloseCircle } from '@styled-icons/ionicons-outline/CloseCircle';
 
 import LinkWrapper from 'components/link-wrapper';
 import dynamic from 'next/dynamic';
