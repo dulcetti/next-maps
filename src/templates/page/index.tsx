@@ -3,7 +3,7 @@ import { CloseCircle } from '@styled-icons/ionicons-outline/CloseCircle';
 import * as S from './styles';
 import LinkWrapper from 'components/link-wrapper';
 
-export default function AboutTemplate() {
+export default function PageTemplate() {
   return (
     <S.Content>
       <LinkWrapper href="/">
