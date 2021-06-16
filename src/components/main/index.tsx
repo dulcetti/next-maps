@@ -31,10 +31,7 @@ export default function Main() {
       id: '1',
       name: 'Tijuca',
       slug: 'tijuca',
-      location: {
-        latitude,
-        longitude,
-      },
+      location: { latitude, longitude },
     };
     changePlace(place);
   }
