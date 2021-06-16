@@ -1,18 +1,11 @@
-// import { Beer } from '@styled-icons/ionicons-outline/Beer';
-
-// import LinkWrapper from 'components/link-wrapper';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import * as S from './styles';
+import { Inputs, Coords } from './interface';
 import { Place } from 'components/map/interface';
-
-type Inputs = {
-  cep: string;
-  number: string;
-};
 
 const Map = dynamic(() => import('components/map'), { ssr: false });
 
@@ -25,45 +18,42 @@ export default function Main() {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     getLatLong(data.cep);
   };
-  const token = '3db254d5b29ccfdd10d484b09247ea12';
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(showPosition);
   }, []);
 
-  function showPosition(position) {
+  function showPosition(positions: Coords) {
+    const { latitude, longitude } = positions.coords;
     const place: Place = {
       id: '1',
       name: 'Tijuca',
       slug: 'tijuca',
-      location: {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      },
+      location: { latitude, longitude },
     };
     changePlace(place);
   }
 
-  function getLatLong(cep: string) {
-    const result = axios.get(`https://www.cepaberto.com/api/v3/cep?cep=${cep}`, {
-      headers: {
-        'Authorization': `Token token=${token}`,
+  const getLatLong = async (cep: string) => {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/Localizacao/latxlont?zipCode=${cep}`
+    );
+    const placeCords = {
+      coords: {
+        latitude: data.lat,
+        longitude: data.long,
       },
-    });
-    console.info(result);
-  }
+    };
+    showPosition(placeCords);
+  };
 
   return (
     <S.Wrapper>
       <S.HeaderWrapper>
         <h1>Header</h1>
       </S.HeaderWrapper>
-      {/* <LinkWrapper href="/about">
-        <Beer size={32} />
-      </LinkWrapper> */}
       <S.BannerWrapper>
         <S.Banner></S.Banner>
         <S.Map>
