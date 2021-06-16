@@ -4,3 +4,8 @@ export interface Coords {
     longitude: number;
   };
 }
+
+export type Inputs = {
+  cep: string;
+  number: string;
+};
