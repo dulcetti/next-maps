@@ -4,15 +4,10 @@ import dynamic from 'next/dynamic';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import * as S from './styles';
+import { Inputs, Coords } from './interface';
 import { Place } from 'components/map/interface';
 
-type Inputs = {
-  cep: string;
-  number: string;
-};
-
 const Map = dynamic(() => import('components/map'), { ssr: false });
-import { Coords } from './interface';
 
 export default function Main() {
   const [place, changePlace] = useState<Place>({});
