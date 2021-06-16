@@ -42,14 +42,16 @@ export default function Main() {
     changePlace(place);
   }
 
-  function getLatLong(cep: string) {
-    const result = axios.get(`https://www.cepaberto.com/api/v3/cep?cep=${cep}`, {
-      headers: {
-        'Authorization': `Token token=${token}`,
+  const getLatLong = async (cep: string) => {
+    const { data } = await axios.get(`${process.env.API_URL}/Localizacao/latxlont?zipCode=${cep}`);
+    const placeCords = {
+      coords: {
+        latitude: data.lat,
+        longitude: data.long,
       },
-    });
-    console.info(result);
-  }
+    };
+    showPosition(placeCords);
+  };
 
   return (
     <S.Wrapper>
