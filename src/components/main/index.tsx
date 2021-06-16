@@ -32,15 +32,17 @@ export default function Main() {
       name: 'Tijuca',
       slug: 'tijuca',
       location: {
-        latitude: latitude,
-        longitude: longitude,
+        latitude,
+        longitude,
       },
     };
     changePlace(place);
   }
 
   const getLatLong = async (cep: string) => {
-    const { data } = await axios.get(`${process.env.API_URL}/Localizacao/latxlont?zipCode=${cep}`);
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/Localizacao/latxlont?zipCode=${cep}`
+    );
     const placeCords = {
       coords: {
         latitude: data.lat,
