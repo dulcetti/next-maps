@@ -1,6 +1,3 @@
-// import { Beer } from '@styled-icons/ionicons-outline/Beer';
-
-// import LinkWrapper from 'components/link-wrapper';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
@@ -25,10 +22,8 @@ export default function Main() {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     getLatLong(data.cep);
   };
-  const token = '3db254d5b29ccfdd10d484b09247ea12';
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -61,9 +56,6 @@ export default function Main() {
       <S.HeaderWrapper>
         <h1>Header</h1>
       </S.HeaderWrapper>
-      {/* <LinkWrapper href="/about">
-        <Beer size={32} />
-      </LinkWrapper> */}
       <S.BannerWrapper>
         <S.Banner></S.Banner>
         <S.Map>
