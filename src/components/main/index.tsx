@@ -12,6 +12,7 @@ type Inputs = {
 };
 
 const Map = dynamic(() => import('components/map'), { ssr: false });
+import { Coords } from './interface';
 
 export default function Main() {
   const [place, changePlace] = useState<Place>({});
@@ -29,14 +30,15 @@ export default function Main() {
     navigator.geolocation.getCurrentPosition(showPosition);
   }, []);
 
-  function showPosition(position) {
+  function showPosition(positions: Coords) {
+    const { latitude, longitude } = positions.coords;
     const place: Place = {
       id: '1',
       name: 'Tijuca',
       slug: 'tijuca',
       location: {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
+        latitude: latitude,
+        longitude: longitude,
       },
     };
     changePlace(place);
